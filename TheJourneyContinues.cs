@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace TheJourneyContinues
@@ -54,14 +55,14 @@ namespace TheJourneyContinues
             }
 
             _ = Main.player[Main.myPlayer].statManaMax2 / 20;
-            Vector2 vector = Main.fontMouseText.MeasureString(Lang.inter[2].Value);
+            Vector2 vector = Main.fontMouseText.MeasureString(Language.GetTextValue("LegacyInterface.2"));
             int num8 = 50;
             if (vector.X >= 45f)
             {
                 num8 = (int)vector.X + 5;
             }
 
-            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, Lang.inter[2].Value, new Vector2(800 - num8 + UI_ScreenAnchorX, 6f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default, 1f, SpriteEffects.None, 0f);
+            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, Language.GetTextValue("LegacyInterface.2"), new Vector2(800 - num8 + UI_ScreenAnchorX, 6f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default, 1f, SpriteEffects.None, 0f);
             if (UIDisplay_ManaPerStar <= 20)
             {
                 for (int i = 1; i < Main.player[Main.myPlayer].statManaMax2 / UIDisplay_ManaPerStar + 1; i++)
