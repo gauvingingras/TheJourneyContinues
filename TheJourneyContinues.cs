@@ -12,7 +12,7 @@ namespace TheJourneyContinues
         public static string GithubProjectName => "TheJourneyContinues";
 
         private static readonly int UI_ScreenAnchorX = Main.screenWidth - 800;
-        private static int UIDisplay_ManaPerStar;
+        private static float UIDisplay_ManaPerStar;
 
         public override void Load()
         {
@@ -28,23 +28,31 @@ namespace TheJourneyContinues
         {
             // Code borrowed and adapted from SteviesMod because I wanted it in a mod but did not like all the other contents it included (check it out: https://github.com/Steviegt6/SteviesMod/)
             if (Main.player[Main.myPlayer].statManaMax2 / 10 >= 20)
+            {
                 UIDisplay_ManaPerStar = Main.player[Main.myPlayer].statManaMax2 / 10;
+            }
             else
+            {
                 UIDisplay_ManaPerStar = 20;
+            }
+
             if (Main.LocalPlayer.ghost || Main.player[Main.myPlayer].statManaMax2 <= 0)
             {
                 return;
             }
-            int num18 = Main.player[Main.myPlayer].statManaMax / 20;
+
+            _ = Main.player[Main.myPlayer].statManaMax / 20;
             int num17 = Main.player[Main.myPlayer].GetModPlayer<TheJourneyContinuesPlayer>().arcaneFruits;
             if (num17 < 0)
             {
                 num17 = 0;
             }
+
             if (num17 > 0)
             {
-                num18 = Main.player[Main.myPlayer].statManaMax / (20 + num17 / 4);
+                _ = Main.player[Main.myPlayer].statManaMax / (20 + num17 / 4);
             }
+
             _ = Main.player[Main.myPlayer].statManaMax2 / 20;
             Vector2 vector = Main.fontMouseText.MeasureString(Lang.inter[2].Value);
             int num8 = 50;
@@ -52,31 +60,33 @@ namespace TheJourneyContinues
             {
                 num8 = (int)vector.X + 5;
             }
+
             DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, Lang.inter[2].Value, new Vector2(800 - num8 + UI_ScreenAnchorX, 6f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default, 1f, SpriteEffects.None, 0f);
             if (UIDisplay_ManaPerStar <= 20)
-                for (int i = 1; i < Terraria.Main.player[Terraria.Main.myPlayer].statManaMax2 / UIDisplay_ManaPerStar + 1; i++)
+            {
+                for (int i = 1; i < Main.player[Main.myPlayer].statManaMax2 / UIDisplay_ManaPerStar + 1; i++)
                 {
-                    int num7 = 255;
                     bool flag = false;
                     float num6 = 1f;
+                    int num7;
                     if (Main.player[Main.myPlayer].statMana >= i * UIDisplay_ManaPerStar)
                     {
                         num7 = 255;
-                        if (Terraria.Main.player[Terraria.Main.myPlayer].statMana == i * UIDisplay_ManaPerStar)
+                        if (Main.player[Main.myPlayer].statMana == i * UIDisplay_ManaPerStar)
                         {
                             flag = true;
                         }
                     }
                     else
                     {
-                        float num4 = (float)(Terraria.Main.player[Terraria.Main.myPlayer].statMana - (i - 1) * UIDisplay_ManaPerStar) / (float)UIDisplay_ManaPerStar;
+                        float num4 = (Main.player[Main.myPlayer].statMana - (i - 1) * UIDisplay_ManaPerStar) / UIDisplay_ManaPerStar;
                         num7 = (int)(30f + 225f * num4);
                         if (num7 < 30)
                         {
                             num7 = 30;
                         }
                         num6 = num4 / 4f + 0.75f;
-                        if ((double)num6 < 0.75)
+                        if (num6 < 0.75)
                         {
                             num6 = 0.75f;
                         }
@@ -85,74 +95,83 @@ namespace TheJourneyContinues
                             flag = true;
                         }
                     }
+
                     if (flag)
                     {
-                        num6 += Terraria.Main.cursorScale - 1f;
+                        num6 += Main.cursorScale - 1f;
                     }
-                    int a = (int)((double)(float)num7 * 0.9);
+
+                    int a = (int)((float)num7 * 0.9);
                     if (!Main.player[Main.myPlayer].ghost)
                     {
                         if (num17 > 0)
                         {
                             num17--;
-                            Main.spriteBatch.Draw(GetTexture("Items/Miscellaneous/Consumables/ArcaneFruit_Overlay"), new Vector2(775 + UI_ScreenAnchorX, (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num6) / 2f + (float)(28 * (i - 1))), new Rectangle(0, 0, Terraria.Main.manaTexture.Width, Terraria.Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Terraria.Main.manaTexture.Width / 2, Terraria.Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(GetTexture("Items/Miscellaneous/Consumables/ArcaneFruit_Overlay"), new Vector2(775 + UI_ScreenAnchorX, 30 + Main.manaTexture.Height / 2 + (Main.manaTexture.Height - Main.manaTexture.Height * num6) / 2f + 28 * (i - 1)), new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Main.manaTexture.Width / 2, Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
                         }
                         else
                         {
-                            Main.spriteBatch.Draw(Terraria.Main.manaTexture, new Vector2(775 + UI_ScreenAnchorX, (float)(30 + Terraria.Main.manaTexture.Height / 2) + ((float)Terraria.Main.manaTexture.Height - (float)Terraria.Main.manaTexture.Height * num6) / 2f + (float)(28 * (i - 1))), new Rectangle(0, 0, Terraria.Main.manaTexture.Width, Terraria.Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Terraria.Main.manaTexture.Width / 2, Terraria.Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(Main.manaTexture, new Vector2(775 + UI_ScreenAnchorX, 30 + Main.manaTexture.Height / 2 + (Main.manaTexture.Height - Main.manaTexture.Height * num6) / 2f + 28 * (i - 1)), new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Main.manaTexture.Width / 2, Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
                         }
                     }
                 }
+            }
             else if (UIDisplay_ManaPerStar > 20)
+            {
                 for (int i = 1; i < Main.player[Main.myPlayer].statManaMax2 / UIDisplay_ManaPerStar + 1; i++)
                 {
-                    int num7 = 255;
                     bool flag = false;
                     float num6 = 1f;
-                    if (Terraria.Main.player[Terraria.Main.myPlayer].statMana >= i * UIDisplay_ManaPerStar)
+                    int num7;
+                    if (Main.player[Main.myPlayer].statMana >= i * UIDisplay_ManaPerStar)
                     {
                         num7 = 255;
-                        if (Terraria.Main.player[Terraria.Main.myPlayer].statMana == i * UIDisplay_ManaPerStar)
+                        if (Main.player[Main.myPlayer].statMana == i * UIDisplay_ManaPerStar)
                         {
                             flag = true;
                         }
                     }
                     else
                     {
-                        float num4 = (float)(Terraria.Main.player[Terraria.Main.myPlayer].statMana - (i - 1) * UIDisplay_ManaPerStar) / (float)UIDisplay_ManaPerStar;
+                        float num4 = (Main.player[Main.myPlayer].statMana - (i - 1) * UIDisplay_ManaPerStar) / UIDisplay_ManaPerStar;
                         num7 = (int)(30f + 225f * num4);
                         if (num7 < 30)
                         {
                             num7 = 30;
                         }
+
                         num6 = num4 / 4f + 0.75f;
-                        if ((double)num6 < 0.75)
+                        if (num6 < 0.75)
                         {
                             num6 = 0.75f;
                         }
+
                         if (num4 > 0f)
                         {
                             flag = true;
                         }
                     }
+
                     if (flag)
                     {
-                        num6 += Terraria.Main.cursorScale - 1f;
+                        num6 += Main.cursorScale - 1f;
                     }
-                    int a = (int)((double)(float)num7 * 0.9);
-                    if (!Terraria.Main.player[Terraria.Main.myPlayer].ghost)
+
+                    int a = (int)((float)num7 * 0.9);
+                    if (!Main.player[Main.myPlayer].ghost)
                     {
                         if (num17 > 0)
                         {
                             num17--;
-                            Main.spriteBatch.Draw(GetTexture("Items/Miscellaneous/Consumables/ArcaneFruit_Overlay"), new Vector2(775 + UI_ScreenAnchorX, (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num6) / 2f + (float)(28 * (i - 1))), new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Terraria.Main.manaTexture.Width / 2, Terraria.Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(GetTexture("Items/Miscellaneous/Consumables/ArcaneFruit_Overlay"), new Vector2(775 + UI_ScreenAnchorX, 30 + Main.manaTexture.Height / 2 + (Main.manaTexture.Height - Main.manaTexture.Height * num6) / 2f + 28 * (i - 1)), new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Main.manaTexture.Width / 2, Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
                         }
                         else
                         {
-                            Main.spriteBatch.Draw(Main.manaTexture, new Vector2(775 + UI_ScreenAnchorX, (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num6) / 2f + (float)(28 * (i - 1))), new Rectangle(0, 0, Terraria.Main.manaTexture.Width, Terraria.Main.manaTexture.Height), new Microsoft.Xna.Framework.Color(num7, num7, num7, a), 0f, new Vector2(Terraria.Main.manaTexture.Width / 2, Terraria.Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(Main.manaTexture, new Vector2(775 + UI_ScreenAnchorX, 30 + Main.manaTexture.Height / 2 + (Main.manaTexture.Height - Main.manaTexture.Height * num6) / 2f + 28 * (i - 1)), new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height), new Color(num7, num7, num7, a), 0f, new Vector2(Main.manaTexture.Width / 2, Main.manaTexture.Height / 2), num6, SpriteEffects.None, 0f);
                         }
                     }
                 }
+            }
         }
     }
 }
