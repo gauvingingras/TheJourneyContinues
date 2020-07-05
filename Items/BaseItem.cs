@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,10 +12,13 @@ namespace TheJourneyContinues.Items
 
         public sealed override void SetDefaults()
         {
-            Texture2D texture = ModContent.GetTexture(Texture);
+            if (!Main.dedServ) {
+                Texture2D texture = ModContent.GetTexture(Texture);
+
+                item.width = texture.Width;
+                item.height = texture.Height;
+            }
             
-            item.width = texture.Width;
-            item.height = texture.Height;
             item.value = Value;
             item.rare = Rare;
 
