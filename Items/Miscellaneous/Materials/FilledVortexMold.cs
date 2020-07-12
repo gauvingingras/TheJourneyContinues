@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class FilledVortexMold : BaseMaterial
+    public class FilledVortexMold : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.Red;
     }

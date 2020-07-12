@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace TheJourneyContinues.Items
 {
-    public abstract class BaseItem : ModItem
+    public abstract class _BaseItem : ModItem
     {
         protected virtual int Rare => ItemRarityID.White;
         protected virtual int Value => 0;

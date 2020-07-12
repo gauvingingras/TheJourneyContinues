@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public abstract class BaseSword : BaseItem
+    public abstract class _BaseSword : _BaseItem
     {
         protected abstract int Damage { get; }
         protected abstract int UseTime { get; }

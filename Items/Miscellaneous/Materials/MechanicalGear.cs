@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class MechanicalGear : BaseMaterial
+    public class MechanicalGear : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.LightRed;
     }

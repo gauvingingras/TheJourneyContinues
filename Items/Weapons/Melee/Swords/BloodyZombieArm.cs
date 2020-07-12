@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public class BloodyZombieArm : BaseSword
+    public class BloodyZombieArm : _BaseSword
     {
         protected override int Rare => ItemRarityID.Green;
         protected override int Damage => 20;

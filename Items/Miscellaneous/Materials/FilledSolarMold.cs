@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class FilledSolarMold : BaseMaterial
+    public class FilledSolarMold : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.Red;
     }

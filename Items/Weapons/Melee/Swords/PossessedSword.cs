@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public class PossessedSword : BaseSword
+    public class PossessedSword : _BaseSword
     {
         protected override int Rare => ItemRarityID.LightRed;
         protected override int Value => Item.sellPrice(gold: 1);

@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class FilledNebulaMold : BaseMaterial
+    public class FilledNebulaMold : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.Red;
     }

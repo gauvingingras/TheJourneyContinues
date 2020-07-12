@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public class MeteorSword : BaseSword
+    public class MeteorSword : _BaseSword
     {
         protected override int Rare => ItemRarityID.Pink;
         protected override int Damage => 50;

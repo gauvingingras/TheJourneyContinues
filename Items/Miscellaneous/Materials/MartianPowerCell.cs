@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class MartianPowerCell : BaseMaterial
+    public class MartianPowerCell : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.Yellow;
     }

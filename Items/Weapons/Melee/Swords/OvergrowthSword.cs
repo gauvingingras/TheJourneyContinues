@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public class OvergrowthSword : BaseSword
+    public class OvergrowthSword : _BaseSword
     {
         protected override int Rare => ItemRarityID.Orange;
         protected override int Value => Item.sellPrice(silver: 50);

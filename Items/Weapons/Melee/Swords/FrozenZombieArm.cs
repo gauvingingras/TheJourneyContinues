@@ -1,6 +1,6 @@
 ﻿namespace TheJourneyContinues.Items.Weapons.Melee.Swords
 {
-    public class FrozenZombieArm : BaseSword
+    public class FrozenZombieArm : _BaseSword
     {
         protected override int Damage => 16;
         protected override int UseTime => 23;

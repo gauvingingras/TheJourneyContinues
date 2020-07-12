@@ -2,7 +2,7 @@
 
 namespace TheJourneyContinues.Items.Miscellaneous.Materials
 {
-    public class MoltenCore : BaseMaterial
+    public class MoltenCore : _BaseMaterial
     {
         protected override int Rare => ItemRarityID.Blue;
     }
