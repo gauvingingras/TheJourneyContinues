@@ -9,8 +9,9 @@ namespace TheJourneyContinues.Items.Weapons.Melee.Swords
     {
         protected override int Rare => ItemRarityID.Pink;
         protected override int Damage => 50;
-        protected override int UseTime => 15;
+        protected override int UseTime => 30;
         protected override float Knockback => 5f;
+        public override bool OnlyShootOnSwing => true;
 
         protected override void SetSwordDefaults()
         {
