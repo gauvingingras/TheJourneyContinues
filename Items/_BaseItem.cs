@@ -12,13 +12,14 @@ namespace TheJourneyContinues.Items
 
         public sealed override void SetDefaults()
         {
-            if (!Main.dedServ) {
+            if (!Main.dedServ)
+            {
                 Texture2D texture = ModContent.GetTexture(Texture);
 
                 item.width = texture.Width;
                 item.height = texture.Height;
             }
-            
+
             item.value = Value;
             item.rare = Rare;
 

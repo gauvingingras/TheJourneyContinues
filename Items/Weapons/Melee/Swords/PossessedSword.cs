@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 
 namespace TheJourneyContinues.Items.Weapons.Melee.Swords
